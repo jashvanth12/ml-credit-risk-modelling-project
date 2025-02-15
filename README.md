@@ -106,16 +106,19 @@ Before performing data cleaning and exploratory data analysis (EDA), we split th
 # Data Cleaning
 * Handling Missing Values
 ![image](https://github.com/user-attachments/assets/58c55aba-ceed-4b48-b8b2-30730385526d)
+
 The **Residence_Type** column has missing values, which we will fill using the mode (most frequent value) to maintain data consistency and avoid introducing bias. This ensures minimal impact on the dataset while preserving the original distribution.
 
 # Boxplot To Visualize Outliers
 ![image](https://github.com/user-attachments/assets/a46fe6c8-00a5-4b85-b6c7-b6f71502b557)
+
 * We observed outliers in the **Processing_Fee** column, indicating cases where the fee is higher than the loan amount, which is not possible. These anomalies suggest data errors or inconsistencies that need to be addressed for accurate   analysis.
 * We discussed with the business team and decided that if the **Processing_Fee** exceeds **3% of the loan amount**, it will be considered an outlier. This approach helps maintain data integrity and ensures realistic fee values in the     analysis.
 * We also found that some values in the **GST** column are outliers, as GST should not exceed **20%**. Any values above this threshold will be treated as anomalies to ensure data accuracy and consistency.
 
 # Analyze Categorical Columns
 ![image](https://github.com/user-attachments/assets/d5204513-55b0-4146-bd99-b06a573facb9)
+
 There is a spelling mistake in the **Loan_Purpose** column where "Personnal" should be corrected to "Personal." We will clean this to ensure data consistency and accuracy.
 
 
