@@ -24,7 +24,7 @@ Columns:
 
 * gender
 
-*marital_status
+* marital_status
 
 * employment_status
 
@@ -38,64 +38,64 @@ Columns:
 
 * city
 
-state
+* state
 
-zipcode
+* zipcode
 
-Loan Data (df_loans)
+# Loan Data (df_loans)
 
 Provides details about the loans sanctioned to customers.
 
 Columns:
 
-loan_id (Loan ID)
+* loan_id (Loan ID)
 
-cust_id (Customer ID)
+* cust_id (Customer ID)
 
-loan_purpose
+* loan_purpose
 
-loan_type
+* loan_type
 
-sanction_amount
+* sanction_amount
 
-loan_amount
+* loan_amount
 
-processing_fee
+* processing_fee
 
-gst
+* gst
 
-net_disbursement
+* net_disbursement
 
-loan_tenure_months
+* loan_tenure_months
 
-principal_outstanding
+* principal_outstanding
 
-bank_balance_at_application
+* bank_balance_at_application
 
-disbursal_date
+* disbursal_date
 
-installment_start_dt
+* installment_start_dt
 
-default (Indicates whether the loan was defaulted)
+* default (Indicates whether the loan was defaulted)
 
-Credit Bureau Data (df_bureau)
+# Credit Bureau Data (df_bureau)
 
 Contains credit history and financial behavior of customers.
 
 Columns:
 
-cust_id (Customer ID)
+* cust_id (Customer ID)
 
-number_of_open_accounts
+* number_of_open_accounts
 
-number_of_closed_accounts
+* number_of_closed_accounts
 
-total_loan_months
+* total_loan_months
 
-delinquent_months
+* delinquent_months
 
-total_dpd (Days past due)
+* total_dpd (Days past due)
 
-enquiry_count
+* enquiry_count
 
-credit_utilization_ratio
+* credit_utilization_ratio
