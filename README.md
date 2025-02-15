@@ -243,6 +243,50 @@ optuna tunning
 ![image](https://github.com/user-attachments/assets/8f8e621c-ca8c-4cdf-97d5-a2d49ab18f5e)
 
 
+## Attempt 4
+* XGBoost
+* Handle Class Imbalance Using SMOTE Tomek
+* Parameter tunning using optuna
+
+![image](https://github.com/user-attachments/assets/a039447c-4a46-4bd4-895b-2c74329c06c9)
+
+# Model Evaluation : ROC/AUC
+
+![image](https://github.com/user-attachments/assets/b9105516-db40-4e1d-a938-ac6690d5e61d)
+
+# Model Evaluation : Rankordering, KS statistic, Gini coeff
+
+* **Rank Ordering**: This evaluates how well the model separates good and bad cases by ranking predictions from highest to lowest. A well-performing model should show a clear separation, where higher scores correspond to higher                probabilities of the target event (e.g., loan default).
+
+* **KS Statistic** (Kolmogorov-Smirnov Statistic): This measures the maximum difference between the cumulative distribution of positive and negative classes. A higher KS value (typically between 0 and 1) indicates better model                 discrimination. KS > 0.4 is generally considered good.
+
+* **Gini Coefficient**: This measures inequality in prediction distribution and is derived from the Lorenz Curve. It is calculated as 2 × AUC - 1, where AUC is the Area Under the Curve of the ROC curve. A Gini coefficient closer to 1          indicates a highly effective model, while a value near 0 suggests poor performance.
+
+  ![image](https://github.com/user-attachments/assets/05b47443-369b-4971-832e-f39481d38227)
+  
+## Insights from the Decile Table
+
+  * Top Deciles
+  * The first decile (Decile 9) has a high event rate of 72.00% and a non-event rate of 28.00%. This indicates that the model is highly confident in predicting events in this decile.
+  * The second decile (Decile 8) also shows a significant event rate of 12.72%, with a cumulative event rate reaching 98.6%.
+  * Middle Deciles:
+  * Deciles 7 and 6 show a significant drop in event rates
+  * Lower Deciles:
+  * Deciles 5 to 0 show zero events, with all predictions being non-events. These deciles collectively have a non-event rate of 100%.
+  * KS Statistic:
+  * The KS statistic, which is the maximum difference between cumulative event rates and cumulative non-event rates, is highest at Decile 8 with a value of 85.98%. This suggests that the model performs best at distinguishing between         events and non-events up to this decile.The KS value gradually decreases in the following deciles, indicating a decrease in model performance for distinguishing between events and non-events.
+
+### KS Value
+* The highest KS value is 85.98%, found at Decile 8. This indicates that the model's performance in distinguishing between events and non-events is most significant at this decile. (If KS is in top 3 decile and score above 40, it is        considered a good predictive model.)
+
+![image](https://github.com/user-attachments/assets/396302e6-84ac-4772-a48d-21f6207b1e84)
+
+* AUC of 0.98: The model is very good at distinguishing between events and non-events.
+* Gini coefficient of 0.96: This further confirms that the model is highly effective in its predictions, with almost perfect rank ordering capability.
+* The Gini coefficient ranges from -1 to 1, where a value closer to 1 signifies a perfect model, 0 indicates a model with no discriminative power, and -1 signifies a perfectly incorrect model.
+
+
+
 
 
 
