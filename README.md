@@ -193,13 +193,18 @@ Feature encoding is the process of converting categorical variables into numeric
 ## Attempt 1
 * Logistic Regression, RandomForest & XGB
 * No handling of class imbalance
+
+  
 Logistic regression
+
   ![image](https://github.com/user-attachments/assets/df1e736b-cbb8-444b-93ee-99763d52cf12)
 
 RandomForestClassifier
+
 ![image](https://github.com/user-attachments/assets/000a75d0-4bfc-42bb-9501-f58fc737ea77)
 
 XGBoost
+
 ![image](https://github.com/user-attachments/assets/65a5376f-14e7-453b-a88d-96a8dde4322d)
 
 Since there is not much difference between XGB and Logistic, we will choose LogisticRegression as a candidate for our RandomizedSearchCV candidate it has a better interpretation.
