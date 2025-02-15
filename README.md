@@ -212,26 +212,34 @@ Since there is not much difference between XGB and Logistic, we will choose Logi
 ## Attempt 2
   * Logistic Regression & XGB
   * Handle Class Imbalance Using Under Sampling
+    
 Undersampling Handling
+
 ![image](https://github.com/user-attachments/assets/5de12e07-2e09-4b27-857a-3c77a13ceb3c)
 
 Logistic Regression 
+
 ![image](https://github.com/user-attachments/assets/bf85a482-3c68-4a2e-9994-899774c0dd70)
 
 XGBoost
+
 ![image](https://github.com/user-attachments/assets/86a914fc-816b-4612-9916-617882824141)
 
 ## Attempt 3
   * Logistic Regression
   * Handle Class Imbalance Using SMOTE Tomek
   * Parameter tunning using optuna
+
 Smote
+
 ![image](https://github.com/user-attachments/assets/513aa20f-1748-4ada-af06-1032b293a2b3)
 
 Logistic Regression
+
 ![image](https://github.com/user-attachments/assets/150ecb3f-3e5e-4ed6-a516-03919a960e5c)
 
 optuna tunning
+
 ![image](https://github.com/user-attachments/assets/8f8e621c-ca8c-4cdf-97d5-a2d49ab18f5e)
 
 
