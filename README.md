@@ -1,42 +1,42 @@
 # credit-risk-modeling
 
-Introduction
+# Introduction
 
 Credit risk modelling is a critical aspect of financial risk management, enabling lenders and financial institutions to assess the likelihood of a borrower defaulting on a loan. The primary objective of this project is to develop a predictive model that estimates the probability of credit risk, assigns a credit score, and determines a risk rating for each applicant.
 
-Objective
+# Objective
 
 The goal of this project is to analyze customer data, loan details, and credit bureau information to predict the creditworthiness of individuals. By leveraging machine learning techniques, we aim to build a model that can accurately predict the probability of default, categorize customers based on their credit scores, and provide a comprehensive risk rating system.
 
-Dataset Overview
+# Dataset Overview
 
 This project utilizes three key datasets:
 
-Customer Data (df_customers)
+# Customer Data (df_customers)
 
 Contains demographic and personal details about customers.
 
 Columns:
 
-cust_id (Customer ID)
+* cust_id (Customer ID)
 
-age
+* age
 
-gender
+* gender
 
-marital_status
+*marital_status
 
-employment_status
+* employment_status
 
-income
+* income
 
-number_of_dependants
+* number_of_dependants
 
-residence_type
+* residence_type
 
-years_at_current_address
+* years_at_current_address
 
-city
+* city
 
 state
 
