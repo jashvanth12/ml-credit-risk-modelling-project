@@ -121,6 +121,127 @@ The **Residence_Type** column has missing values, which we will fill using the m
 
 There is a spelling mistake in the **Loan_Purpose** column where "Personnal" should be corrected to "Personal." We will clean this to ensure data consistency and accuracy.
 
+# Exploratory Data Analysis
+![image](https://github.com/user-attachments/assets/dd43bdb0-1ec1-408d-9d7f-5a0b63e93524)
+
+* Average age in the default group is little less (37.12) than the average (39.7) of the group that did not default
+* Variability (standard deviation) is mostly similar in both the groups
+* Both the groups have similar min and max ages
+
+![image](https://github.com/user-attachments/assets/fc038f6d-956f-4b23-83a2-96075f06688a)
+
+* The **Orange (defaulted) group** is slightly shifted to the left, indicating that younger individuals are more likely to default on their loans. This trend suggests a possible relationship between age and loan repayment behavior, which could be explored further for risk assessment.
+
+# KDE for all columns
+![image](https://github.com/user-attachments/assets/1d346f7b-1cab-4509-b6e2-d606a120f7bf)
+
+* In columns: loan_tenure_months, delinquent_months, total_dpd, credit_utilization, higher values indicate high likelyhood of becoming a default. Hence these 4 looks like strong predictors
+* In remaining columns the distributions do not give any obvious insights
+* Why loan_amount and income did not give any signs of being strong predictors? May be when we combine these two and get loan to income ratio (LTI), that may have influence on the target variable. We will explore more later
+
+# Feature Engineering, Feature Selection
+* Generate Loan to Income (LTI) Ratio
+![image](https://github.com/user-attachments/assets/9f5da98f-cc46-457d-baa9-0fc1d9d4e41c)
+
+![image](https://github.com/user-attachments/assets/0771eb90-8f09-4a13-b43d-138f91b051bb)
+
+* Blue graph has majority of its values on lower side of LTI
+* Orange graph has many values when LTI is higher indicating that higher LTI means high risk loan
+
+## Generate Delinquency Ratio
+![image](https://github.com/user-attachments/assets/7f7953e2-1eba-40c9-a19b-6fb94a7f8d00)
+
+![image](https://github.com/user-attachments/assets/2f973900-bed0-4835-8493-3714b7bd7f29)
+
+* Blue graph has majority of its values on lower side of LTI
+* Orange graph has many values when delinquency ratio is higher indicating some correlation on default
+
+## Generate Avg DPD Per Delinquency
+![image](https://github.com/user-attachments/assets/b0c4435e-bf20-45e1-bf64-7b5ee76dffe4)
+
+![image](https://github.com/user-attachments/assets/37d22b2f-77cf-47da-bcc5-38371c60db78)
+
+* Graph clearly shows more occurances of default cases when avg_dpd_per_delinquency is high. This means this column is a strong predictor
+
+## Droping Columns
+* Remove columns that are just unique ids and don't have influence on target
+* Remove columns that business contact person asked us to remove
+
+## VIF to measure multicolinearity
+![image](https://github.com/user-attachments/assets/ec1bde5f-09fd-4567-b6a3-223cb3f23107)
+
+* By performing **Variance Inflation Factor (VIF) analysis**, we found that the columns **Sanction_Amount, Processing_Fee, GST, Net_Disbursement, and Principal_Outstanding** have high VIF values, indicating multicollinearity. To avoid
+  redundancy and improve model performance, we will drop these columns.
+
+## Feature Selection for Categorical Variables Using WOE and IV
+* To select important categorical features, we calculate Weight of Evidence (WOE) and Information Value (IV):
+* Weight of Evidence (WOE): It measures the predictive power of a categorical variable by comparing the distribution of good and bad cases (e.g., loan repayment vs. default). Higher WOE values indicate stronger separation between          classes.
+* Information Value (IV): It quantifies the importance of a variable in predicting the target outcome. Variables with higher IV values contribute more to the model. Generally, IV is interpreted as:
+    * < 0.02 → Not useful
+    * 0.02 - 0.1 → Weak predictor
+    * 0.1 - 0.3 → Medium predictor
+    * 0.3 - 0.5 → Strong predictor
+    * > 0.5 → Very strong predictor (may indicate overfitting)
+* By calculating WOE and IV, we can identify and retain the most relevant categorical features for better model performance.
+
+![image](https://github.com/user-attachments/assets/377e0ba1-c3cd-4aee-bb3f-a864a72dfd44)
+
+## Feature Encoding
+Feature encoding is the process of converting categorical variables into numerical values so that machine learning models can process them effectively. Since most algorithms require numerical input, categorical data must be transformed appropriately. There are several encoding techniques, including **Label Encoding**, which assigns a unique integer to each category, and **One-Hot Encoding**, which creates binary columns for each category to avoid introducing ordinal relationships. For high-cardinality variables, **Target Encoding** and **WOE Encoding** are useful, as they replace categories with meaningful statistics based on the target variable. Choosing the right encoding method ensures that categorical features contribute effectively to the model without introducing bias or redundancy.
+
+# Model Training
+## Attempt 1
+* Logistic Regression, RandomForest & XGB
+* No handling of class imbalance
+Logistic regression
+  ![image](https://github.com/user-attachments/assets/df1e736b-cbb8-444b-93ee-99763d52cf12)
+
+RandomForestClassifier
+![image](https://github.com/user-attachments/assets/000a75d0-4bfc-42bb-9501-f58fc737ea77)
+
+XGBoost
+![image](https://github.com/user-attachments/assets/65a5376f-14e7-453b-a88d-96a8dde4322d)
+
+Since there is not much difference between XGB and Logistic, we will choose LogisticRegression as a candidate for our RandomizedSearchCV candidate it has a better interpretation.
+
+## Attempt 2
+  * Logistic Regression & XGB
+  * Handle Class Imbalance Using Under Sampling
+Undersampling Handling
+![image](https://github.com/user-attachments/assets/5de12e07-2e09-4b27-857a-3c77a13ceb3c)
+
+Logistic Regression 
+![image](https://github.com/user-attachments/assets/bf85a482-3c68-4a2e-9994-899774c0dd70)
+
+XGBoost
+![image](https://github.com/user-attachments/assets/86a914fc-816b-4612-9916-617882824141)
+
+## Attempt 3
+  * Logistic Regression
+  * Handle Class Imbalance Using SMOTE Tomek
+  * Parameter tunning using optuna
+Smote
+![image](https://github.com/user-attachments/assets/513aa20f-1748-4ada-af06-1032b293a2b3)
+
+Logistic Regression
+![image](https://github.com/user-attachments/assets/150ecb3f-3e5e-4ed6-a516-03919a960e5c)
+
+optuna tunning
+![image](https://github.com/user-attachments/assets/8f8e621c-ca8c-4cdf-97d5-a2d49ab18f5e)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
