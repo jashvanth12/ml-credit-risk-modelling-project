@@ -99,3 +99,7 @@ Columns:
 * enquiry_count
 
 * credit_utilization_ratio
+
+# Importance of Train-Test Split Before EDA and Data Cleaning
+Before performing data cleaning and exploratory data analysis (EDA), we split the dataset into training and testing sets to prevent data leakage and ensure a fair evaluation of the model. Data leakage occurs when information from the test set influences the analysis or feature engineering process, leading to overly optimistic model performance that may not generalize well to unseen data. This issue, known as train-test contamination, can cause misleading insights and unrealistic expectations about the model’s effectiveness. By keeping the test set separate and untouched until the final evaluation, we ensure that all decisions regarding feature selection, transformations, and model tuning are based solely on the training data. This approach helps create a robust and unbiased model that performs well in real-world scenarios.
+
